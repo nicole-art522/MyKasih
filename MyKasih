@@ -1,0 +1,67 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+// Structure to hold item details
+struct Item {
+    string name;
+    string imageFile;
+};
+
+int main() {
+    // 1. Database of eligible items and their photos
+    vector<Item> eligibleItems = {
+        {"Rice", "rice_photo.jpg"},
+        {"Cooking Oil", "oil_photo.jpg"},
+        {"Milk", "milk_photo.jpg"},
+        {"Eggs", "eggs_photo.jpg"},
+        {"Bread", "bread_photo.jpg"},
+        {"Milo", "milo_photo.jpg"},
+        {"Snacks", "snacks_photo.jpg"}
+    };
+
+    string input;
+    cout << "=== MyKasih Item Checker ===" << endl;
+
+    while (true) {
+        cout << "\nEnter item name (or type 'exit' to quit): ";
+        getline(cin, input);
+
+        if (input == "exit") break;
+
+        bool isEligible = false;
+        string foundImage = "";
+
+        // 2. Search Logic
+        for (const auto& item : eligibleItems) {
+            // Create lowercase versions for comparison so "MILK" or "milk" both work
+            string itemNameLower = item.name;
+            string inputLower = input;
+
+            transform(itemNameLower.begin(), itemNameLower.end(), itemNameLower.begin(), ::tolower);
+            transform(inputLower.begin(), inputLower.end(), inputLower.begin(), ::tolower);
+
+            if (itemNameLower == inputLower) {
+                isEligible = true;
+                foundImage = item.imageFile;
+                break;
+            }
+        }
+
+        // 3. Display Result
+        if (isEligible) {
+            cout << "Result: [ ELIGIBLE ]" << endl;
+            cout << "Loading Image: " << foundImage << endl;
+        }
+        else {
+            cout << "Result: [ NOT ELIGIBLE ]" << endl;
+            cout << "Message: This item is not under the MyKasih program." << endl;
+        }
+    }
+
+    return 0;
+
+}

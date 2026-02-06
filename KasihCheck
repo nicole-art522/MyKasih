@@ -24,7 +24,7 @@ int main() {
     };
 
     string input;
-    cout << "=== MyKasih Item Checker ===" << endl;
+    cout << "=== KasihCheck Item Checker ===" << endl;
 
     while (true) {
         cout << "\nEnter item name (or type 'exit' to quit): ";
@@ -58,7 +58,7 @@ int main() {
         }
         else {
             cout << "Result: [ NOT ELIGIBLE ]" << endl;
-            cout << "Message: This item is not under the MyKasih program." << endl;
+            cout << "Message: This item is not under the KasihCheck program." << endl;
         }
     }
 
